@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-mongoose.connect('mongodb+srv://root:root@cluster0-zvbes.mongodb.net/fec?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/fec', {useNewUrlParser: true, useUnifiedTopology: true });
 const fs = require('fs');
 
 var ProductSchema = new Schema ({

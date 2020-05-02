@@ -26,10 +26,11 @@ class App extends React.Component {
   }
 
   product () {
+    var url = new URL(window.location.href)
     var productNumber = window.location.pathname.split('/')[2]
     $.ajax({
       method: 'GET',
-      url: `http://ec2-18-144-174-63.us-west-1.compute.amazonaws.com:9000/products/${productNumber}`,
+      url: `http://${url.hostname}:9000/products/${productNumber}`,
       success: results => {this.setState(results)},
       error: err => { throw err }
     })

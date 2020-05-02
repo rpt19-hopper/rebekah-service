@@ -2,7 +2,9 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-mongoose.connect('mongodb+srv://root:root@cluster0-zvbes.mongodb.net/fec?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/fec', { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('connected to mongo'))
+.catch(error => console.log(error))
 
 const ProductSchema = new Schema({
   productNumber: { type: Number, required: true },
