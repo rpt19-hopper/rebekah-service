@@ -27,5 +27,51 @@ const fetch = (productNumber, callback) => {
   });
 };
 
-module.exports = { fetch };
+const create = (data, callback) => {
+  ProductModel.create(data, function (err, results) {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+const read = (productNumber, callback) => {
+  ProductModel.findOne({ productNumber }, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+}
+
+const update = (productNumber, data, callback) => {
+  ProductModel.updateOne({ productNumber }, data, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+}
+
+const deleteId = (productNumber, callback) => {
+  ProductModel.deleteOne({ productNumber }, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+}
+
+module.exports = { 
+  fetch,
+  create,
+  read,
+  update,
+  deleteId
+};
 
