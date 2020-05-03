@@ -39,7 +39,7 @@ class Description extends React.Component {
       return (
         <div className="description-component">
           {this.descriptionVisible(this.props.product.productDescription)}
-          <div class="fadeout"></div>
+          <div className="fadeout"></div>
           <button className="learn-more-button" onClick={() => this.expand()}>Learn more about this item</button>
         </div>
       )

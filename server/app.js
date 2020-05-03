@@ -33,9 +33,57 @@ app.get('/products/:productNumber', (req, res) => {
   const { productNumber } = req.params;
   db.fetch(productNumber, (error, results) => {
     if (error) {
-      res.sendStatus(404).send();
+      res.status(404).send();
     } else {
       res.send(results);
+    }
+  });
+});
+
+
+
+
+
+// CRUD methods
+app.post('/create-product', (req, res) => {
+  db.create(req.body, (error, results) => {
+    if (error) {
+      res.status(404).send();
+    } else {
+      res.status(200).send(results);
+    }
+  });
+});
+
+// read an item
+app.get('/read-product/:productId', (req, res) => {
+  db.read(req.params.productId, (error, results) => {
+    if (error) {
+      res.status(404).send();
+    } else {
+      res.status(200).send(results);
+    }
+  });
+});
+
+// update an item
+app.put('/update-product/:productId', (req, res) => {
+  db.update(req.params.productId, req.body, (error, results) => {
+    if (error) {
+      res.status(404).send();
+    } else {
+      res.status(200).send(results);
+    }
+  });
+});
+
+// delete an item
+app.delete('/delete-product/:productId', (req, res) => {
+  db.deleteId(req.params.productId, (error, results) => {
+    if (error) {
+      res.status(404).send();
+    } else {
+      res.status(200).send(results);
     }
   });
 });
