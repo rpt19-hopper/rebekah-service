@@ -1,28 +1,25 @@
 const faker = require('faker');
 const fs = require('fs')
 const path = require('path')
-const { writeToPath } = require('@fast-csv/format');
 
+console.time('seed timer')
 
-//for (let x = 0; x < 100; x++) {
+for (let x = 6; x <= 100; x++) {
   var data = [];
-  
-  for (let i = 1; i < 10; i++) {
+  for (let i = (((x - 1) * 100000) + 1); i <= (x * 100000); i++) {
     data.push(
       {
       productNumber: i,
-      productName: faker.random.words(Math.floor(Math.random() * 5 + 1)),
+      productName: faker.random.words(Math.floor(Math.random() * 4 + 1)),
       productDescription: faker.lorem.paragraphs(),
       productCategory: faker.random.words(1),
       versions: {
         style: [
           {
-            name: faker.random.words(Math.floor(Math.random() * 2 + 1)),
-            metaData: faker.random.words(Math.floor(Math.random() * 6 + 1)).split(' ')
+            name: faker.random.words(1),
           },
           {
-            name: faker.random.words(Math.floor(Math.random() * 2 + 1)),
-            metaData: faker.random.words(Math.floor(Math.random() * 6 + 1)).split(' ')
+            name: faker.random.words(1),
           }
         ]
       },
@@ -31,14 +28,16 @@ const { writeToPath } = require('@fast-csv/format');
     )
   }
 
-  //console.log(data)
+  fs.writeFileSync(path.resolve(__dirname + '/mongo_data/' + `dataSet${x}.json`), JSON.stringify(data))
+  console.log(`file #${x} written`)
+  console.timeLog('seed timer')
 
-  writeToPath(path.resolve(__dirname, 'data.csv'), data, { headers: true })
-  .on('error', err => console.error(err))
-  .on('finish', () => console.log('Done writing.'));
-//}
+}
 
-// fs.writeFile(__dirname + './newData.csv', data, (err) => {
-//   if (err) throw err;
-//   console.log('The file has been saved!');
-// });
+/*
+once the data generation is completed:
+- open the terminal
+- cd to sample_data/mongo_data
+- run the following script:
+  ls -1 *.json | while read jsonfile; do mongoimport -d fec -c products --file $jsonfile --jsonArray --type json; done
+*/
