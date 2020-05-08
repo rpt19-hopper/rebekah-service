@@ -32,7 +32,8 @@
     "jquery": "^3.4.1",
     "json2csv": "^5.0.1",
     "mongoose": "^5.9.3",
-    "node": "^13.10.1"
+    "node": "^13.10.1",
+    "pg": "^8.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
