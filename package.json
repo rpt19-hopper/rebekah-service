@@ -11,7 +11,8 @@
     "build-prod": "webpack --config webpack.prod.js",
     "eslint": "eslint --ext .jsx --ext .js db/ server/",
     "seed": "node sample_data/seed.js",
-    "gen10Mrecords": "node --max-old-space-size=16000 sample_data/createData.js "
+    "genMongoRecords": "node --max-old-space-size=16000 sample_data/createData.js ",
+    "genAndSeedPG": "node --max-old-space-size=8000 sample_data/createProductData_pg.js && node --max-old-space-size=8000 sample_data/createStyleData_pg.js && node db/pg_db.js"
   },
   "repository": {
     "type": "git",
