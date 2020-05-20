@@ -30,15 +30,15 @@ class Description extends React.Component {
     if (this.state.visible) {
       return (
         <div className="description-component">
-          {this.descriptionVisible(this.props.product.productDescription)}
-          {this.descriptionHidden(this.props.product.productDescription)}
+          {this.descriptionVisible(this.props.product.productdescription)}
+          {this.descriptionHidden(this.props.product.productdescription)}
           <button className="less" onClick={() => this.expand()}>Less</button>
         </div>
       )
     } else {
       return (
         <div className="description-component">
-          {this.descriptionVisible(this.props.product.productDescription)}
+          {this.descriptionVisible(this.props.product.productdescription)}
           <div className="fadeout"></div>
           <button className="learn-more-button" onClick={() => this.expand()}>Learn more about this item</button>
         </div>

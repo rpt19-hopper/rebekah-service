@@ -12,7 +12,7 @@
     "eslint": "eslint --ext .jsx --ext .js db/ server/",
     "seed": "node sample_data/seed.js",
     "genMongoRecords": "node --max-old-space-size=16000 sample_data/createData.js ",
-    "genAndSeedPG": "node --max-old-space-size=8000 sample_data/createProductData_pg.js && node --max-old-space-size=8000 sample_data/createStyleData_pg.js && node db/pg_db.js"
+    "genAndSeedPG": "node --max-old-space-size=8000 sample_data/createProductData_pg.js && node --max-old-space-size=8000 sample_data/createStyleData_pg.js && node db/pg_db_seed.js"
   },
   "repository": {
     "type": "git",

@@ -12,10 +12,10 @@ class App extends React.Component {
     super();
     this.state = {
       id: 0,
-      productNumber: 0,
-      productName: '',
-      productDescription: '',
-      productCategory: '',
+      productnumber: 0,
+      productname: '',
+      productdescription: '',
+      productcategory: '',
       versions: {}
     }
     this.product = this.product.bind(this);
@@ -49,7 +49,7 @@ class App extends React.Component {
       <div className="product-service-container">
         <div className="category-review-wrapper">
           <span className="category-component">
-            {this.state.productCategory}
+            {this.state.productcategory}
           </span>
           <div className="category-divider">|</div>
           {this.sales()}
@@ -57,7 +57,7 @@ class App extends React.Component {
           <Review/>
         </div>
           <div className="name-component">
-            {this.state.productName}
+            {this.state.productname}
           </div>
         <Price/>
         <Selection product={this.state}/>
