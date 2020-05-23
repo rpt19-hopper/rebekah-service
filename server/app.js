@@ -1,9 +1,9 @@
 // SERVER
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');
-
 const app = express();
 
 app.use(bodyParser.json());
@@ -25,7 +25,7 @@ const db = require('../db/database_pg.js');
 
 // ROUTES
 app.get('/listing/:productNumber', (req, res) => {
-  res.sendFile('index.html', {
+  res.status(200).sendFile('index.html', {
     root: path.join(__dirname, '/../client/dist/'),
   });
 });
@@ -36,7 +36,7 @@ app.get('/products/:productNumber', (req, res) => {
     if (error) {
       res.status(404).send();
     } else {
-      res.send(results);
+      res.status(200).send(results);
     }
   });
 });

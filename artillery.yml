@@ -1,0 +1,26 @@
+config:
+  target: 'http://localhost:9000'
+  http: 
+    timeout: 10
+  processor: './artillery_fn.js'
+  phases:
+    - duration: 10
+      arrivalRate: 1
+      name: 'Warm up- 1/sec'
+    - duration: 10
+      arrivalRate: 10
+      name: '10/sec'
+    - duration: 10
+      arrivalRate: 100
+      name: '100/sec'
+    # - duration: 10
+    #   arrivalRate: 1000
+    #   name: '1000/sec'
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - function: 'genRandomProductId'
+    - get:
+        url: "/read-product/{{ id }}"
