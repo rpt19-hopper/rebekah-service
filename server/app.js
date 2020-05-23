@@ -20,7 +20,8 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use(compression());
 
 // DATABASE
-const db = require('../db/database.js');
+//const db = require('../db/database.js');
+const db = require('../db/database_pg.js');
 
 // ROUTES
 app.get('/listing/:productNumber', (req, res) => {
@@ -46,6 +47,7 @@ app.get('/products/:productNumber', (req, res) => {
 
 // CRUD methods
 app.post('/create-product', (req, res) => {
+  console.log('at server post')
   db.create(req.body, (error, results) => {
     if (error) {
       res.status(404).send();
