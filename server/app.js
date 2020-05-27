@@ -61,6 +61,7 @@ app.post('/create-product', (req, res) => {
 app.get('/read-product/:productId', (req, res) => {
   db.read(req.params.productId, (error, results) => {
     if (error) {
+      console.log(error)
       res.status(404).send();
     } else {
       res.status(200).send(results);
