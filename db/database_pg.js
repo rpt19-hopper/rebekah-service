@@ -1,8 +1,9 @@
 const { Client } = require('pg');
 
+
 const client = new Client({
   user: 'student',
-  host: 'localhost',
+  host: '3.21.236.235',
   database: 'sdc',
   password: 'student',
   port: 5432,
@@ -26,6 +27,7 @@ const fetch = (productNumber, callback) => {
       callback(null, data)
     })
     .catch((err) => {
+      console.log('fetch err',err)
       callback(err);
     })
 };
