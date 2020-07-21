@@ -31,7 +31,10 @@ class App extends React.Component {
     $.ajax({
       method: 'GET',
       url: `http://${url.hostname}:9000/products/${productNumber}`,
-      success: results => {this.setState(results)},
+      success: results => {
+        console.log(results)
+        this.setState(results)
+      },
       error: err => { throw err }
     })
   }

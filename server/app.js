@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');
 const app = express();
+const redis = require('redis');
+
+var client = redis.createClient();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,13 +35,37 @@ app.get('/listing/:productNumber', (req, res) => {
 
 app.get('/products/:productNumber', (req, res) => {
   const { productNumber } = req.params;
-  db.fetch(productNumber, (error, results) => {
-    if (error) {
-      res.status(404).send();
+  client.get(productNumber, (err, val) => {
+    if (err) {
+      console.log('redis get error', err)
     } else {
-      res.status(200).send(results);
+      if (val) {
+        val = JSON.parse(val)
+        console.log('redis get success')
+        res.status(200).send(val);
+      } else {
+        db.fetch(productNumber, (error, results) => {
+          if (error) {
+            res.status(404).send();
+          } else {
+            client.set(productNumber, JSON.stringify(results), redis.print)
+            res.status(200).send(results);
+          }
+        });
+
+      }
     }
-  });
+  })
+
+  // db.fetch(productNumber, (error, results) => {
+  //   if (error) {
+  //     res.status(404).send();
+  //   } else {
+  //     console.log(results)
+  //     //client.set(productNumber, JSON.stringify(results), redis.print)
+  //     res.status(200).send(results);
+  //   }
+  // });
 });
 
 

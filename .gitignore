@@ -5,3 +5,5 @@ coverage
 mongo_data
 postgres_data
 postgres_data.zip
+
+newrelic.js

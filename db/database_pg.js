@@ -47,11 +47,13 @@ const read = (productNumber, callback) => {
   var query = `SELECT * FROM products JOIN styles ON products.productNumber = styles.product_id WHERE productNumber = ${productNumber};`;
   client.query(query)
     .then((results) => {
+      console.log(results)
       var data = results.rows[0];
       var styles = results.rows.map((item) => {
         return {name: item.style}
       })
       data.versions = { style: styles }
+      console.log(data)
       callback(null, data)
     })
     .catch((err) => {

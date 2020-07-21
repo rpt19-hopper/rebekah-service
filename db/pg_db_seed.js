@@ -22,7 +22,7 @@ var createStyles = 'CREATE TABLE IF NOT EXISTS styles (' +
   'id integer PRIMARY KEY NOT NULL,' +
   'style varchar (200),' +
   'product_id integer,' +
-  'FOREIGN KEY (product_id) REFERENCES products (productNumber))';
+  'FOREIGN KEY (product_id) REFERENCES products (productNumber));';
 var copyToStyles = "COPY styles FROM '/home/rebbyv/Projects/rpt19-sdc/rebekah-service/sample_data/postgres/pg_data_styles.csv' CSV HEADER";
 
 
@@ -53,3 +53,7 @@ client
     .catch(err => console.log('styles table creation error', err))
   })
   .catch(err => console.log('connection error', err))
+
+
+
+  
