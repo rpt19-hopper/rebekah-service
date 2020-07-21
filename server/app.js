@@ -23,7 +23,6 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use(compression());
 
 // DATABASE
-//const db = require('../db/database.js');
 const db = require('../db/database_pg.js');
 
 // ROUTES
@@ -56,16 +55,6 @@ app.get('/products/:productNumber', (req, res) => {
       }
     }
   })
-
-  // db.fetch(productNumber, (error, results) => {
-  //   if (error) {
-  //     res.status(404).send();
-  //   } else {
-  //     console.log(results)
-  //     //client.set(productNumber, JSON.stringify(results), redis.print)
-  //     res.status(200).send(results);
-  //   }
-  // });
 });
 
 
